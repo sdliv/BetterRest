@@ -9,13 +9,12 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var sleepAmount = 8.0
+    @State private var wakeUp = Date()
     
     var body: some View {
-        // Stepper with range of 4 to 12. With stepping of 0.25
-        Stepper(value: $sleepAmount, in: 4...12, step: 0.25) {
-            Text("\(sleepAmount, specifier: "%g") hours")
-        }
+        // .labelsHidden hides label, but screen reader still works. Creates Date range starting today and any date in the future.
+        DatePicker("Please enter a date", selection: $wakeUp, in: Date()...)
+        .labelsHidden()
     }
 }
 
